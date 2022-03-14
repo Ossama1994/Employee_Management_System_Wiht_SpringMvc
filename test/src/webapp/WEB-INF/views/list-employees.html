@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+ <meta charset="ISO-8859-1">
+ <link th:href="@{/styles/cssandjs/main.css}" rel="stylesheet" />
+ <title> Show all Employees</title>
+</head>
+<style>
+             body{
+              font-family: Arial, Helvetica, sans-serif;
+              }
+
+			table, td, th {
+				  border: 1px solid #ddd;
+				  text-align: left;
+		     }
+
+			table {
+				  border-collapse: collapse;
+				  width: 100%;
+			 }
+			th, td {
+				  padding: 15px;
+				}
+		    tr:nth-child(even){
+		          background-color: #f2f2f2;
+		        }
+		    th{
+		          background-color: #EA526F;
+		    }
+		    a{
+		      text-decoration: none;
+		      color : black;
+		      font-size : 20px;
+		      margin : 1em ;
+		    }
+		      a:hover{
+		      color : #EA526F ;
+		    }
+		    .wrapper{
+		      display : flex ;
+		      justify-content : space-between;
+		    }
+
+
+
+</style>
+<body>
+
+
+<div class="wrapper">
+ <h3> Welcome </h3>
+ <a class="newemp" th:href="@{'/employee/showForm'}"> <strong> New Employee </strong> </a>
+</div>
+
+
+<table>
+ <thead>
+ <tr>
+  <th>Emp id</th>
+  <th>Emp first name</th>
+  <th>Emp last name</th>
+  <th>Emp email</th>
+  <th>Manage</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr th:each="emp:${employe}">
+  <td th:text="${emp.id}"></td>
+  <td th:text="${emp.firstName}"></td>
+  <td th:text="${emp.lastName}"></td>
+  <td th:text="${emp.email}"></td>
+  <td>
+   <a th:href="@{'/employee/edit'(id=${emp.id})}">update</a>
+   <a th:href="@{'/employee/delete'(id=${emp.id})}">delete</a>
+  </td>
+ </tr>
+ </tbody>
+</table>
+
+</body>
+</html>
